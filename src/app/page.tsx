@@ -46,7 +46,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col md:flex-row gap-4 items-center">
               <form onSubmit={handleSubmit} className="w-full md:w-auto flex">
-                <div className="relative w-full max-w-lg">
+                <div className="relative w-full max-w-lg text-black">
                   <Input
                     type="email"
                     placeholder="Subscribe with email"
