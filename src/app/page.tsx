@@ -4,16 +4,14 @@ import Navbar from "../components/Navbar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import Link from 'next/link'
-import { Menu, X,ArrowRight, PhoneCall } from 'lucide-react'
+import { ArrowRight, PhoneCall } from 'lucide-react'
 
 import {Toaster,toast} from 'react-hot-toast'
 import Footer from "@/components/Footer";
 
 export default function Home() {
   const [email, setEmail] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen(!isOpen);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -224,3 +222,7 @@ export default function Home() {
     </div>
   );
 }
+function setIsOpen(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}
+
