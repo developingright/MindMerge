@@ -34,7 +34,7 @@ export default function Home() {
     <div>
       <Navbar />
        <div className="flex h-screen mx-auto items-center justify-center w-full bg-black text-white px-28">
-        <h1 className="absolute top-0 left-0 p-8 text-xl font-semibold text-zinc-50">MindMerge</h1>
+        <h1 className="absolute top-0 left-0 px-24 py-8 text-xl font-semibold text-zinc-50">MindMerge</h1>
         <div className="flex flex-col justify-center md:flex-row items-center gap-8 w-full">
           <div className="flex-1 space-y-6">
           <span className="self-start cursor-pointer text-blue-700 bg-[#E5E8F9] py-1 px-2 rounded-full text-sm">
@@ -222,7 +222,3 @@ export default function Home() {
     </div>
   );
 }
-function setIsOpen(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}
-

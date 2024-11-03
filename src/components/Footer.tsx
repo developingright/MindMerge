@@ -1,14 +1,9 @@
 'use client'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 import { Check} from "lucide-react"
 
 export default function Component() {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-  }
-
   return (
     <footer className="w-full py-12 md:py-16 lg:py-20">
       <div className="container px-4 md:px-6">

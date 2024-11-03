@@ -37,7 +37,7 @@ export default function Component() {
   <Sheet>
     <SheetTrigger asChild>
       <Button variant="ghost" size="icon" aria-label="Menu">
-        <Menu className="h-6 w-6 text-white" />
+        <Menu className="h-6 w-6 text-white" onClick={()=>setIsOpen(isOpen)}/>
       </Button>
     </SheetTrigger>
     <SheetContent side="right" className="w-[300px] sm:w-[400px]">
