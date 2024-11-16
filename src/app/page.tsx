@@ -5,7 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { ArrowRight, PhoneCall } from 'lucide-react'
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 import {Toaster,toast} from 'react-hot-toast'
 import Footer from "@/components/Footer";
 
@@ -78,10 +83,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full flex gap-20 flex-col bg-black text-white px-24 pb-20">
+      <div className="w-full flex flex-col bg-black text-white px-24 pb-20 pt-20" >
         <h1 className="font-semibold text-5xl pb-15">Our Products</h1>
         <div className="flex flex-col justify-center md:flex-row items-center gap-8 w-full">
-          <div className="flex-1 space-y-6">
+          <div className="flex-1 space-y-6 py-20" id="skills_analytics">
             <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl">Skill Analytics</h2>
             <p className="text-gray-200 max-w-[600px]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -135,7 +140,7 @@ export default function Home() {
               className="rounded-lg"
             />
           </div>
-          <div className="flex-1 space-y-6">
+          <div className="flex-1 space-y-6 py-20" id="employee_development">
             <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl">Employee Development</h2>
             <p className="text-gray-200 max-w-[600px]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -172,7 +177,7 @@ export default function Home() {
           
         </div>
         <div className="flex flex-col justify-center md:flex-row items-center gap-8 w-full">
-          <div className="flex-1 space-y-6">
+          <div className="flex-1 space-y-6 py-20" id="finance_management">
             <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl">Finance Management</h2>
             <p className="text-gray-200 max-w-[600px]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -215,6 +220,31 @@ export default function Home() {
               className="rounded-lg"
             />
           </div>
+        </div>
+        <div className="flex flex-col w-full text-white items-center py-20" id="faq">
+          <h1 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl ">FAQs</h1>
+          <Accordion type="single" collapsible className="w-[100%] mx-auto">
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="no-underline hover:no-underline focus:no-underline">Is it accessible?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger className="no-underline hover:no-underline focus:no-underline">Is it styled?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It comes with default styles that matches the other
+                components&apos; aesthetic.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger className="no-underline hover:no-underline focus:no-underline">Is it animated?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It&apos;s animated by default, but you can disable it if you
+                prefer.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
         <Footer />
       </div>

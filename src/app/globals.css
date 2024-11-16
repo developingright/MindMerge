@@ -1,11 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*{
+  scroll-behavior: smooth;
+}
 
 body {
 
   font-family: Arial, Helvetica, sans-serif;
-  /* height: 200vh; */
 }
 .nav{
   background: rgba( 255, 255, 255, 0.5 );
