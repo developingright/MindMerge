@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { ArrowRight, PhoneCall } from "lucide-react";
+import { ArrowRight, Link,  Phone, PhoneCall, Rocket, Settings2} from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -13,7 +13,23 @@ import {
 } from "@/components/ui/accordion";
 import { Toaster, toast } from "react-hot-toast";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+const fadeInUp = {
+  initial: {
+    opacity: 0,
+    y: 30
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -128,7 +144,11 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-1 relative aspect-video w-full max-w-xl">
+            <motion.div 
+             initial="initial"
+             whileInView="animate"
+             viewport={{  amount: 0.3 }}
+             variants={fadeInUp}className="flex-1 relative aspect-video w-full max-w-xl">
               <Image
                 src="/Teams-dashboard.webp"
                 alt="Newsletter illustration"
@@ -136,7 +156,7 @@ export default function Home() {
                 objectFit="contain"
                 className="rounded-lg"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
         <div
@@ -150,7 +170,12 @@ export default function Home() {
             Innovate careers, elevate potential
           </p>
           <div className="flex flex-col md:flex-row flex-wrap w-full gap-8">
-            <div className="flex-1 relative aspect-video w-full max-w-xl">
+            <motion.div 
+            initial="initial"
+            whileInView="animate"
+            viewport={{  amount: 0.3 }}
+            variants={fadeInUp}
+            className="flex-1 relative aspect-video w-full max-w-xl">
               <Image
                 src="/employee-dashboard.webp"
                 alt="Newsletter illustration"
@@ -158,7 +183,7 @@ export default function Home() {
                 objectFit="contain"
                 className="rounded-lg"
               />
-            </div>
+            </motion.div>
             <div className="flex-1  py-20 ">
               <div className="flex after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-gray-500/50 after:to-transparent relative py-10 ">
               <div className="text-purple-700 text-base font-bold px-2">
@@ -212,7 +237,12 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-1 relative aspect-video w-full max-w-xl">
+            <motion.div 
+            initial="initial"
+            whileInView="animate"
+            viewport={{  amount: 0.3 }}
+            variants={fadeInUp}
+            className="flex-1 relative aspect-video w-full max-w-xl">
               <Image
                 src="/finance-dashboard.webp"
                 alt="Newsletter illustration"
@@ -220,56 +250,89 @@ export default function Home() {
                 objectFit="contain"
                 className="rounded-lg"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
-        <div
-          className="flex flex-col w-full text-white items-center py-20"
-          id="faq"
-        >
-          <h1 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl ">
+        <div className=" flex flex-col items-center justify-center gap-5 w-[95%] md:w-[60%]" id="faq">
+        <h1 className="text-4xl font-bold tracking-tighter sm:text-3xl md:text-4xl mb-20">
             FAQs
           </h1>
-          <Accordion type="single" collapsible className="w-[100%] mx-auto">
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="no-underline hover:no-underline focus:no-underline">
-                Do you offer a free trial or demo?
-              </AccordionTrigger>
-              <AccordionContent>
-                Yes, we offer a free trial and live demos to help you explore
-                how Talexa can meet your needs
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger className="no-underline hover:no-underline focus:no-underline">
-                Does Talexa integrate with our HR systems?
-              </AccordionTrigger>
-              <AccordionContent>
+          <div className="flex gap-5 w-full">
+            <Rocket size={40} />
+            <Accordion
+              type="single"
+              collapsible
+              className="w-full p-2 border-none"
+            >
+              <AccordionItem
+                value="item-1"
+                className="border-none backdrop-blur-lg"
+              >
+                <AccordionTrigger>Do you offer a free trial or demo?</AccordionTrigger>
+                <AccordionContent>
+                  Yes, we offer a free trial and live demos to help you explore
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+          <div className="flex gap-5 w-full">
+            <Link size={40} />
+            <Accordion
+              type="single"
+              collapsible
+              className="w-full p-2 border-none"
+            >
+              <AccordionItem
+                value="item-1"
+                className="border-none backdrop-blur-lg"
+              >
+                <AccordionTrigger>Does Talexa integrate with our HR systems?</AccordionTrigger>
+                <AccordionContent>
                 Yes, Talexa integrates with most major HR and learning
-                management systems (LMS).
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger className="no-underline hover:no-underline focus:no-underline">
-                Can Talexa be customized to different departments, teams and
-                projects?
-              </AccordionTrigger>
-              <AccordionContent>
-                Yes, absolutely. We customize our product to best fit your
-                requirements and operating principles.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-4">
-              <AccordionTrigger className="no-underline hover:no-underline focus:no-underline">
-                I have more questions, can we get onto an exploratory chat?
-              </AccordionTrigger>
-              <AccordionContent>
+                  management systems (LMS).
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+          <div className="flex gap-5 w-full">
+            <Settings2 size={40} />
+            <Accordion
+              type="single"
+              collapsible
+              className="w-full p-2 border-none"
+            >
+              <AccordionItem
+                value="item-1"
+                className="border-none backdrop-blur-lg"
+              >
+                <AccordionTrigger>Can Talexa be customized to different departments, teams and projects?</AccordionTrigger>
+                <AccordionContent>
+                  Yes, absolutely. We customize our product to best fit your
+                  requirements and operating principles.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+          <div className="flex gap-5 w-full">
+            <Phone size={40} />
+            <Accordion
+              type="single"
+              collapsible
+              className="w-full p-2 border-none"
+            >
+              <AccordionItem
+                value="item-1"
+                className="border-none backdrop-blur-lg"
+              >
+                <AccordionTrigger>I have more questions, can we get onto an exploratory chat?</AccordionTrigger>
+                <AccordionContent>
                 Yes, we offer multiple exploratory chats to answer any questions
                 you may have. Please contact us via the Demo request form, or
-                simply email us at phuong@talexa.ai{" "}
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+                simply email us at phuong@talexa.ai{" "}              
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
         </div>
         <div className="h-[400px] flex w-full items-center justify-center flex-col gap-10" id="contact">
           <h1 className="text-5xl">Ready to get started?</h1>
