@@ -1,142 +1,196 @@
-// import Image from "next/image"
-import Link from "next/link"
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-import { DialogTitle } from '@radix-ui/react-dialog';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Menu,ChevronDown } from "lucide-react";
-import { Button } from "./ui/button";
-import { useRef, useState } from "react";
+"use client";
+
+import { ArrowRight, ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 
-const productItems = [
-  { href: '#skills_analytics', label: 'Skills  Analytics' },
-  { href: '#employee_development', label: 'Employee Development' },
-  { href: '#finance_management', label: 'Finance Management' },
-]
 
-const ProductDropdown = ({ setIsPopoverOpen }: { setIsPopoverOpen: React.Dispatch<React.SetStateAction<boolean>> }) => {
-  
-  return (
-    <div className={`bg-zinc-900 mt-4 rounded-lg shadow-lg border border-zinc-700 absolute left-0 -translate-x-12 overflow-hidden`} onMouseLeave={()=>setIsPopoverOpen(prev => !prev)}>
-      {productItems.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className="block px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-800 transition-colors"
-        >
-          {item.label}
-        </Link>
-      ))}
-    </div>
-  )
-}
-
-export default function Component() {
+export default function Navbar() {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isProductExpanded, setIsProductExpanded] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const popoverRef = useRef<HTMLDivElement>(null)
-  const navItems = [
-    { href: '/', label: 'Products', hasDropdown: true },
-    { href: '#employee_development', label: 'Resources' },
-    { href: '#finance_management', label: 'Contact Us' },
-    { href: '#faq', label: 'FAQs' },
-  ]
-
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false); // Close sheet
+    
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 300); // Wait for sheet close animation
+  };
   return (
-    <>
-      <nav className=".nav fixed left-0 right-0 max-w-fit mx-auto md:flex items-center gap-8 px-6 py-3 my-4 rounded-full bg-zinc-900/90 backdrop-blur-sm border border-zinc-800 hidden md:visible">
-        {/* <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-zinc-50">
-          <span>MindMerge</span>
-        </Link> */}
-        <div className="flex items-center gap-6 text-sm font-medium text-zinc-400">
-          {navItems.map((item,idx) => (
-            item.hasDropdown ? (
-              <div
-              key={item.href}
-              className="relative"
-              onMouseEnter={() => setIsPopoverOpen(true)}
-              // onMouseLeave={() => setIsPopoverOpen(false)}
+    <header className="top-0 z-50 w-full bg-black after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-gray-500/50 after:to-transparent relative">
+      <div className="container flex h-16 items-center justify-between px-4 sm:px-8 mx-auto">
+        <div className="flex gap-7 items-center">
+
+        <Link href="/" className="flex-shrink-0">
+          <span className="text-xl font-semibold text-white">Talexa.ai</span>
+          <span className="sr-only">Home</span>
+        </Link>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button
+              variant="ghost"
+              className="mr-2 px-0 text-white hover:bg-transparent lg:hidden"
             >
-              <Popover open={isPopoverOpen}>
-                <PopoverTrigger asChild>
-                  <button className="flex items-center gap-1 hover:text-zinc-200 focus:outline-none">
-                    {item.label}
-                  </button>
-                </PopoverTrigger>
-                <PopoverContent className="p-0 absolute bg-transparent border-none top-full left-0  w-40">
-                  <ProductDropdown setIsPopoverOpen={setIsPopoverOpen}/>
-                </PopoverContent>
-              </Popover>
-            </div>
-            ) : (
-              <Link
-              key={item.href}
-              href={item.href}
-              className="hover:text-zinc-200 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </Link>
-            )
-          ))}
+              <svg
+                className="h-8 w-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="bg-black" onOpenAutoFocus={(e) => e.preventDefault()}>
+  <SheetTitle className="text-white">
+    <VisuallyHidden>Navigation Menu</VisuallyHidden>
+  </SheetTitle>
+  <nav className="flex flex-col space-y-6 h-full pt-8 justify-center">
+  <div className="flex flex-col w-full">
+    <button
+      onClick={() => setIsProductExpanded(!isProductExpanded)}
+      className="flex items-center justify-center text-gray-300 transition-colors hover:text-white w-full py-4 text-lg font-medium"
+    >
+      Products
+      <ChevronDown
+        className={`ml-1 h-5 w-5 transition-transform duration-200 ${
+          isProductExpanded ? "rotate-180" : ""
+        }`}
+      />
+    </button>
+
+    <div className={`flex flex-col space-y-4 overflow-hidden transition-all duration-200 ${
+      isProductExpanded ? "max-h-48 opacity-100 mt-4" : "max-h-0 opacity-0"
+    }`}>
+      <Link
+        href="#skills_analytics"
+        className="text-gray-300 hover:text-white text-base w-full text-center"
+        onClick={(e) => handleLinkClick(e, '#skills_analytics')}
+      >
+        Skill Analytics
+      </Link>
+      <Link
+        href="#employee_development"
+        onClick={(e) => handleLinkClick(e, '#employee_development')}
+        className="text-gray-300 hover:text-white text-base w-full text-center"
+      >
+        Employee Development
+      </Link>
+      <Link
+        href="#finance_management"
+        className="text-gray-300 hover:text-white text-base w-full text-center"
+        onClick={(e) => handleLinkClick(e, '#finance_management')}
+      >
+        Finance Management
+      </Link>
+    </div>
+  </div>
+    <Link
+      href="#"
+      className="text-gray-300 transition-colors hover:text-white py-4 text-lg font-medium w-full text-center"
+    >
+      Resources
+    </Link>
+    <Link
+      href="#contact"
+      className="text-gray-300 transition-colors hover:text-white py-4 text-lg font-medium w-full text-center"
+      onClick={(e) => handleLinkClick(e, '#contact')}
+    >
+      Contact Us
+    </Link>
+    <Link
+      href="#"
+      className="text-gray-300 transition-colors hover:text-white py-4 text-lg font-medium w-full text-center"
+      onClick={(e) => handleLinkClick(e, '#faq')}
+    >
+      FAQs
+    </Link>
+  </nav>
+</SheetContent>
+        </Sheet>
         </div>
-      </nav>
-      <div className="flex items-center md:hidden fixed right-0 top-0 p-5">
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label="Menu">
-          <Menu className="h-6 w-6 text-white" onClick={()=>setIsOpen(isOpen)}/>
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-        <VisuallyHidden>
-          <DialogTitle>Navigation Menu</DialogTitle>
-        </VisuallyHidden>
-        <nav className="flex flex-col gap-4">
-          {navItems.map((item) => (
-            item.hasDropdown ? (
-              <div
-              key={item.href}
-              className="px-3 text-sm"
-            > 
-              <Accordion type="single" collapsible className="">
-            <AccordionItem value="item-1" className="border-none">
-              <AccordionTrigger className="text-gray-600 no-underline hover:no-underline focus:no-underline">Products</AccordionTrigger>
-              <AccordionContent>
-              {productItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block text-gray-600 hover:text-gray-900  py-2 text-sm  transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+        <nav className="hidden items-center space-x-6 text-sm font-medium lg:flex flex-1 justify-center z-30">
+          <div className="relative group">
+            <button className="flex items-center text-gray-300 transition-colors hover:text-white">
+              Products <ChevronDown className="ml-1 h-4 w-4" />
+            </button>
+            <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-black opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+              <div className="py-1">
+                <Link
+                  href="#skills_analytics"
+                  className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-slate-950"
+                >
+                  Skill Analytics
+                </Link>
+                <Link
+                  href="#employee_development"
+                  className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-slate-950"
+                >
+                  Employee Development
+                </Link>
+                <Link
+                  href="#finance_management"
+                  className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-slate-950"
+                >
+                  Finance Management
+                </Link>
+              </div>
             </div>
-            ) : (
-              <Link
-              key={item.href}
-              href={item.href}
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </Link>
-            )
-          ))}
+          </div>
+          <Link
+            href="#skills_analytics"
+            className="text-gray-300 transition-colors hover:text-white"
+          >
+            Resources
+          </Link>
+          <Link
+            href="#contact"
+            className="text-gray-300 transition-colors hover:text-white"
+          >
+            Contact Us
+          </Link>
+          <Link
+            href="#faq"
+            className="text-gray-300 transition-colors hover:text-white"
+          >
+            FAQs
+          </Link>
         </nav>
-      </SheetContent>
-    </Sheet>
-</div>
-    </>
-  )
+       
+        <div className="flex items-center space-x-4 flex-shrink-0">
+          <Button
+            className="group relative bg-white text-black hover:bg-gray-100"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            Book a Demo
+            <ArrowRight
+              className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                isHovered ? "translate-x-1" : ""
+              }`}
+            />
+          </Button>
+        </div>
+      </div>
+    </header>
+  );
 }
