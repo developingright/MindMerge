@@ -42,10 +42,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center bg-black text-white">
         <ContainerScroll
           titleComponent={
-            <div className="flex flex-col gap-24 items-center justify-center">
-              <span className="cursor-pointer text-blue-700 bg-[#E5E8F9] py-1 px-2 rounded-full text-sm max-w-fit">
-                Overview
-              </span>
+            <div className="flex flex-col gap-16 items-center justify-center">
               <h1 className="text-4xl font-semibold text-white dark:text-white">
                 Unlock the full potential of your workforce <br />
                 through <br />
@@ -53,6 +50,7 @@ export default function Home() {
                   Skill Analysis
                 </span>
               </h1>
+              <p className="text-gray-300">Stay ahead with the latest updates and exclusive offers - Sign up for our product updates today!</p>
             </div>
           }
         >
@@ -65,7 +63,7 @@ export default function Home() {
             draggable={false}
           />
         </ContainerScroll>
-        <div className="flex flex-col md:flex-row gap-4 items-center z-10">
+        <div className="flex flex-col md:flex-row gap-4 items-center z-10 -translate-y-20 ">
           <form onSubmit={handleSubmit} className="w-full md:w-auto flex">
             <div className="relative w-full max-w-lg text-black">
               <Input
@@ -94,12 +92,12 @@ export default function Home() {
           </Button>
         </div>
       </div>
-      <div className="w-full flex flex-col bg-black text-white px-24 pb-20 pt-20 items-center justify-center gap-40">
-        <h1 className=" text-5xl md:text-6xl pb-15 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-gray-500/50 after:to-transparent relative py-6">
+      <div className="w-full flex flex-col bg-black text-white px-24 pb-20 items-center justify-center gap-28">
+        <h1 className=" text-4xl sm:text-6xl md:text-7xl pb-15 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-gray-500/50 after:to-transparent relative py-6">
           Our Products
         </h1>
         <div
-          className="flex flex-col justify-center items-center gap-10 w-full"
+          className="flex flex-col justify-center items-center gap-5 w-full"
           id="skills_analytics"
         >
           <h2 className="text-4xl tracking-tighter sm:text-5xl md:text-6xl">
@@ -108,15 +106,21 @@ export default function Home() {
           <p className="text-gray-200 max-w-[800px] text-center">
             Uncover your unique skill architecture
           </p>
-          <div className="flex flex-col md:flex-row w-full gap-8">
-            <div className="flex-1 space-y-6 py-20 ">
+          <div className="flex flex-col md:flex-row w-full">
+            <div className="flex-1 py-20 ">
               <div className="flex after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-gray-500/50 after:to-transparent relative py-10 ">
+                <div className="text-purple-700 text-base font-bold px-2">
+                  1
+                </div>
                 <p className="text-2xl text-gray-300">
                   Visualize and optimize your organization’s skills at every
                   level - organizational, team, and individual
                 </p>
               </div>
               <div className="flex after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-gray-500/50 after:to-transparent relative py-10 ">
+              <div className="text-purple-700 text-base font-bold px-2">
+                  2
+                </div>
                 <p className="text-2xl text-gray-300">
                   Identify skill gaps and pave the way for strategic workforce
                   planning
@@ -136,7 +140,7 @@ export default function Home() {
           </div>
         </div>
         <div
-          className="flex flex-col justify-center items-center gap-10 w-full"
+          className="flex flex-col justify-center items-center gap-5 w-full"
           id="employee_development"
         >
           <h2 className="text-4xl tracking-tighter sm:text-5xl md:text-6xl">
@@ -155,14 +159,20 @@ export default function Home() {
                 className="rounded-lg"
               />
             </div>
-            <div className="flex-1 space-y-6 py-20 ">
+            <div className="flex-1  py-20 ">
               <div className="flex after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-gray-500/50 after:to-transparent relative py-10 ">
+              <div className="text-purple-700 text-base font-bold px-2">
+                  1
+                </div>
                 <p className="text-2xl text-gray-300">
                   Track the progress of skills development for employees and
                   utilise AI to innovate career paths
                 </p>
               </div>
               <div className="flex after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-gray-500/50 after:to-transparent relative py-10 ">
+              <div className="text-purple-700 text-base font-bold px-2">
+                  2
+                </div> 
                 <p className="text-2xl text-gray-300">
                   Strengthen internal mobility where talents can be utilised and
                   redeployed in various part of organisations
@@ -172,7 +182,7 @@ export default function Home() {
           </div>
         </div>
         <div
-          className="flex flex-col justify-center items-center gap-10 w-full"
+          className="flex flex-col justify-center items-center gap-5 w-full"
           id="finance_management"
         >
           <h2 className="text-4xl tracking-tighter sm:text-5xl md:text-6xl">
@@ -181,14 +191,20 @@ export default function Home() {
           <p className="text-gray-200 max-w-[800px] text-center">
             Optimize your Learning & Development investments
           </p>
-          <div className="flex flex-col md:flex-row w-full gap-8">
-            <div className="flex-1 space-y-6 py-20 ">
+          <div className="flex flex-col md:flex-row w-full gap-5">
+            <div className="flex-1  py-20 ">
               <div className="flex after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-gray-500/50 after:to-transparent relative py-10 ">
+              <div className="text-purple-700 text-base font-bold px-2">
+                  1
+                </div>
                 <p className="text-2xl text-gray-300">
                   Stay on top of L&D budget
                 </p>
               </div>
               <div className="flex after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-gray-500/50 after:to-transparent relative py-10 ">
+              <div className="text-purple-700 text-base font-bold px-2">
+                  2
+                </div>
                 <p className="text-2xl text-gray-300">
                   Make informed decisions on upskilling and reskilling
                   investments to maximize ROI
@@ -255,7 +271,7 @@ export default function Home() {
             </AccordionItem>
           </Accordion>
         </div>
-        <div className="h-screen flex w-full items-center justify-center flex-col gap-10" id="contact">
+        <div className="h-[400px] flex w-full items-center justify-center flex-col gap-10" id="contact">
           <h1 className="text-5xl">Ready to get started?</h1>
           <p className="text-center md:max-w-[50%] text-gray-300">Get in touch with us for an exploration chat or request us to design a customer solution for your business.</p>
           <div className="text-4xl flex flex-col gap-6">
